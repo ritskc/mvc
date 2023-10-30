@@ -31,11 +31,11 @@ namespace mvc.Controllers
             return View();
         }
 
-        public ViewResult Details()
+        public ViewResult Details(int id)
         {
             EmployeeViewModel employeeViewModel = new EmployeeViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(1),
+                Employee = _employeeRepository.GetEmployee(id),
                 PageTitle = "Employee Details" 
             };
            
