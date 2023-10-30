@@ -20,9 +20,10 @@ namespace mvc.Controllers
             _employeeRepository = employeeRepository;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            var model = _employeeRepository.GetAllEmployees();
+            return View(model);
         }
 
         public IActionResult Privacy()

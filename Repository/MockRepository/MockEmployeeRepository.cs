@@ -23,6 +23,12 @@ namespace mvc.Repository.MockRepository
                 new Employee() { Id = 11,Name="Jasprit", Department="Bowler",Email = "jasprit@bcci.com"}
             };
         }
+
+        public IEnumerable<Employee> GetAllEmployees()
+        {
+            return _employees;
+        }
+
         public Employee GetEmployee(int id)
         {
             return _employees.FirstOrDefault(emp => emp.Id == id);
