@@ -30,10 +30,9 @@ namespace mvc.Controllers
 
         public ViewResult Details()
         {
-            Employee model = _employeeRepository.GetEmployee(1);
-            ViewBag.Employee = model;
+            Employee model = _employeeRepository.GetEmployee(1);           
             ViewBag.PageTitle = "Employee Details";
-            return View();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
