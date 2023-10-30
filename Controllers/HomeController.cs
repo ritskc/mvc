@@ -8,6 +8,8 @@ using System.Diagnostics;
 
 namespace mvc.Controllers
 {
+    //[Route("Home")]
+    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,6 +22,9 @@ namespace mvc.Controllers
             _employeeRepository = employeeRepository;
         }
 
+        //[Route("")]        
+        //[Route("index")]
+        //[Route("[action]")]
         public ViewResult Index()
         {
             var model = _employeeRepository.GetAllEmployees();
@@ -31,11 +36,12 @@ namespace mvc.Controllers
             return View();
         }
 
-        public ViewResult Details(int id)
+        [Route("{id}")]
+        public ViewResult Details(int? id)
         {
             EmployeeViewModel employeeViewModel = new EmployeeViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(id),
+                Employee = _employeeRepository.GetEmployee(id??1),
                 PageTitle = "Employee Details" 
             };
            
