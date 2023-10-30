@@ -30,7 +30,9 @@ namespace mvc.Controllers
 
         public ViewResult Details()
         {
-            _employeeRepository.GetEmployee(1);
+            Employee model = _employeeRepository.GetEmployee(1);
+            ViewData["Employee"] = model;
+            ViewData["PageTitle"] = "Employee Details";
             return View();
         }
 
