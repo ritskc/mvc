@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Mvc;
 using mvc.Models;
 using mvc.Repository.IRepository;
 using mvc.Repository.MockRepository;
+using mvc.ViewModels;
 using System.Diagnostics;
 
 namespace mvc.Controllers
@@ -30,9 +32,13 @@ namespace mvc.Controllers
 
         public ViewResult Details()
         {
-            Employee model = _employeeRepository.GetEmployee(1);           
-            ViewBag.PageTitle = "Employee Details";
-            return View(model);
+            EmployeeViewModel employeeViewModel = new EmployeeViewModel()
+            {
+                Employee = _employeeRepository.GetEmployee(1),
+                PageTitle = "Employee Details" 
+            };
+           
+            return View(employeeViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
