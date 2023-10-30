@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using mvc.Models;
+using mvc.Repository.IRepository;
+using mvc.Repository.MockRepository;
 using System.Diagnostics;
 
 namespace mvc.Controllers
@@ -7,6 +9,7 @@ namespace mvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        IEmployeeRepository _employeeRepository = new MockEmployeeRepository();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -20,6 +23,12 @@ namespace mvc.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public ViewResult Details()
+        {
+            _employeeRepository.GetEmployee(1);
             return View();
         }
 

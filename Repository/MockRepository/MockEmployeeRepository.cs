@@ -1,8 +1,9 @@
 ﻿using mvc.Models;
+using mvc.Repository.IRepository;
 
 namespace mvc.Repository.MockRepository
 {
-    public class MockEmployeeRepository
+    public class MockEmployeeRepository : IEmployeeRepository
     {
         private List<Employee> _employees;
         public MockEmployeeRepository()
