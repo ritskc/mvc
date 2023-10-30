@@ -9,11 +9,13 @@ namespace mvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        IEmployeeRepository _employeeRepository = new MockEmployeeRepository();
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+            IEmployeeRepository employeeRepository)
         {
             _logger = logger;
+            _employeeRepository = employeeRepository;
         }
 
         public IActionResult Index()

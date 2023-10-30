@@ -1,7 +1,11 @@
+using mvc.Repository.IRepository;
+using mvc.Repository.MockRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IEmployeeRepository,MockEmployeeRepository>();
 
 var app = builder.Build();
 
