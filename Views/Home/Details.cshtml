@@ -1,19 +1,17 @@
 ﻿@model mvc.ViewModels.EmployeeViewModel
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <h3>@Model.PageTitle</h3>
 
-    <div>
-        Name : @Model.Employee.Name
-    </div>
-    <div>
-        Email : @Model.Employee.Email
-    </div>
-    <div>
-        Department : @Model.Employee.Department
-    </div>
-</body>
-</html>
+@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    ViewBag.Title = "Employee Details";
+}
+<h3>@Model.PageTitle</h3>
+
+<div>
+    Name : @Model.Employee.Name
+</div>
+<div>
+    Email : @Model.Employee.Email
+</div>
+<div>
+    Department : @Model.Employee.Department
+</div>
