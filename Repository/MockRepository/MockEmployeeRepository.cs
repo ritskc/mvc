@@ -24,6 +24,13 @@ namespace mvc.Repository.MockRepository
             };
         }
 
+        public Employee AddEmployee(Employee employee)
+        {
+            employee.Id = _employees.Max(x => x.Id) + 1;
+            _employees.Add(employee);
+            return employee;
+        }
+
         public IEnumerable<Employee> GetAllEmployees()
         {
             return _employees;

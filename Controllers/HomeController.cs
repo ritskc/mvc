@@ -42,9 +42,17 @@ namespace mvc.Controllers
             return View(employeeViewModel);
         }
 
+        [HttpGet]
         public ViewResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Create(Employee employee)
+        {
+            employee = _employeeRepository.AddEmployee(employee);
+            return RedirectToAction("details",new {id = employee.Id});
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
