@@ -3,7 +3,7 @@
     public enum Dept
     {
         None,
-        Batman,
+        Batsman,
         Bowler,
         AllRounder,
         Keeper

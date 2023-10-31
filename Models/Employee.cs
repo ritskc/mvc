@@ -13,8 +13,7 @@ namespace mvc.Models
         [Required]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$",ErrorMessage ="Invalid Email format")]
         public string Email { get; set; }
-
         [Required]
-        public Dept Department { get; set; }
+        public Dept? Department { get; set; }
     }
 }
