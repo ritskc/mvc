@@ -3,16 +3,16 @@
 @{    
     ViewBag.Title = "Employee Details";
 }
-<h3>@Model.PageTitle</h3>
 
-<div>
-    Name : @Model.Employee.Name
-</div>
-<div>
-    Email : @Model.Employee.Email
-</div>
-<div>
-    Department : @Model.Employee.Department
+<div class="card" style="width: 18rem;">
+    <img src="~/images/avtar.jpg" class="card-img-top" alt="~/images/avtar.jpg">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Employee.Name</h5>
+        <p class="card-text">@Model.Employee.Email</p>
+        <p class="card-text">@Model.Employee.Department</p>
+        <a href="#" class="btn btn-primary">Back</a>
+        <a href="#" class="btn btn-primary">Delete</a>
+    </div>
 </div>
 
 
