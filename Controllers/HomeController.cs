@@ -49,10 +49,14 @@ namespace mvc.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult Create(Employee employee)
+        public IActionResult Create(Employee employee)
         {
-            employee = _employeeRepository.AddEmployee(employee);
-            return RedirectToAction("details",new {id = employee.Id});
+            if (ModelState.IsValid)
+            {
+                employee = _employeeRepository.AddEmployee(employee);
+                return RedirectToAction("details", new { id = employee.Id });
+            }
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
