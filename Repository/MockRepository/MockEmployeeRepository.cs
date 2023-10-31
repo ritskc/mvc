@@ -40,5 +40,24 @@ namespace mvc.Repository.MockRepository
         {
             return _employees.FirstOrDefault(emp => emp.Id == id);
         }
+
+        Employee IEmployeeRepository.DeleteEmployee(int id)
+        {
+           var employee = _employees.FirstOrDefault(x => x.Id == id);
+           if(employee != null)
+                _employees.Remove(employee);
+
+            return employee;
+        }
+
+        Employee IEmployeeRepository.UpdateEmployee(Employee updateEmployee)
+        {
+            var employee = _employees.FirstOrDefault(x => x.Id == updateEmployee.Id);
+            if (employee != null)
+            {
+                employee = updateEmployee;
+            }
+            return employee;
+        }
     }
 }

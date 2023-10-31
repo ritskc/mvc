@@ -1,11 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using mvc.Models;
 using mvc.Repository.IRepository;
 using mvc.Repository.MockRepository;
+using mvc.Repository.SQLRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IEmployeeRepository,MockEmployeeRepository>();
+
+builder.Services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDBConnection")));
+builder.Services.AddScoped<IEmployeeRepository,SQLEmployeeRepository>();
 
 var app = builder.Build();
 
