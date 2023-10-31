@@ -54,7 +54,8 @@ namespace mvc.Controllers
             if (ModelState.IsValid)
             {
                 employee = _employeeRepository.AddEmployee(employee);
-                return RedirectToAction("details", new { id = employee.Id });
+                //return RedirectToAction("details", new { id = employee.Id });
+                return View();
             }
             return View();
         }
