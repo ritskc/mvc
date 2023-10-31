@@ -42,6 +42,11 @@ namespace mvc.Controllers
             return View(employeeViewModel);
         }
 
+        public ViewResult Create()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
