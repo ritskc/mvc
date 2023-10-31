@@ -13,14 +13,14 @@ namespace mvc.Repository.SQLRepository
 
        
 
-        public Employee AddEmployee(Employee employee)
+        public Employee Add(Employee employee)
         {
             this.context.Employees.Add(employee);
             this.context.SaveChanges();
             return employee;
         }
 
-        public Employee DeleteEmployee(int id)
+        public Employee Delete(int id)
         {
             var employee = this.context.Employees.SingleOrDefault(e => e.Id == id);
             if(employee != null)
@@ -32,17 +32,17 @@ namespace mvc.Repository.SQLRepository
             return employee;
         }
 
-        public IEnumerable<Employee> GetAllEmployees()
+        public IEnumerable<Employee> GetAll()
         {
             return this.context.Employees;
         }
 
-        public Employee GetEmployee(int id)
+        public Employee Get(int id)
         {
             return this.context.Employees.FirstOrDefault(e => e.Id == id);
         }
 
-        public Employee UpdateEmployee(Employee updatedEmployee)
+        public Employee Update(Employee updatedEmployee)
         {
             var employee = this.context.Employees.Attach(updatedEmployee);
             employee.State = Microsoft.EntityFrameworkCore.EntityState.Modified;

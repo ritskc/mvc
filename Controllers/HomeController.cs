@@ -22,7 +22,7 @@ namespace mvc.Controllers
 
         public ViewResult Index()
         {
-            var model = _employeeRepository.GetAllEmployees();
+            var model = _employeeRepository.GetAll();
             return View(model);
         }
 
@@ -35,7 +35,7 @@ namespace mvc.Controllers
         {
             EmployeeViewModel employeeViewModel = new EmployeeViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(id),
+                Employee = _employeeRepository.Get(id),
                 PageTitle = "Employee Details" 
             };
            
@@ -53,7 +53,7 @@ namespace mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                employee = _employeeRepository.AddEmployee(employee);
+                employee = _employeeRepository.Add(employee);
                 //return RedirectToAction("details", new { id = employee.Id });
                 return View();
             }

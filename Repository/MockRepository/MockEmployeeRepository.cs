@@ -24,24 +24,24 @@ namespace mvc.Repository.MockRepository
             };
         }
 
-        public Employee AddEmployee(Employee employee)
+        public Employee Add(Employee employee)
         {
             employee.Id = _employees.Max(x => x.Id) + 1;
             _employees.Add(employee);
             return employee;
         }
 
-        public IEnumerable<Employee> GetAllEmployees()
+        public IEnumerable<Employee> GetAll()
         {
             return _employees;
         }
 
-        public Employee GetEmployee(int id)
+        public Employee Get(int id)
         {
             return _employees.FirstOrDefault(emp => emp.Id == id);
         }
 
-        Employee IEmployeeRepository.DeleteEmployee(int id)
+        Employee IEmployeeRepository.Delete(int id)
         {
            var employee = _employees.FirstOrDefault(x => x.Id == id);
            if(employee != null)
@@ -50,7 +50,7 @@ namespace mvc.Repository.MockRepository
             return employee;
         }
 
-        Employee IEmployeeRepository.UpdateEmployee(Employee updateEmployee)
+        Employee IEmployeeRepository.Update(Employee updateEmployee)
         {
             var employee = _employees.FirstOrDefault(x => x.Id == updateEmployee.Id);
             if (employee != null)
