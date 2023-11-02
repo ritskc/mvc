@@ -1,0 +1,11 @@
+﻿@model int;
+
+@{
+    ViewBag.Title = "Employee not found";
+}
+
+<div>
+    <h1>@ViewBag.Title</h1>
+    <h3>Employee not found with id: @Model</h3>
+    <a asp-action="index" asp-controller="home" class="btn btn-outline-primary">Employee Details</a>
+</div>

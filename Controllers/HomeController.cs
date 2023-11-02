@@ -33,10 +33,15 @@ namespace mvc.Controllers
 
         public ViewResult Details(int id)
         {
+            var employee = _employeeRepository.Get(id);
+            if (employee == null)
+            {
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound", id);
+            }
             EmployeeViewModel employeeViewModel = new EmployeeViewModel()
             {
-                Employee = _employeeRepository.Get(id),
-                PageTitle = "Employee Details" 
+                Employee = employee
             };
            
             return View(employeeViewModel);
@@ -64,6 +69,11 @@ namespace mvc.Controllers
         public IActionResult Edit(int id)
         {
             var employee = _employeeRepository.Get(id);
+            if(employee == null)
+            {
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound",id);
+            }
 
             return View(employee);
         }
