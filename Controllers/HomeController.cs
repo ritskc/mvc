@@ -32,8 +32,7 @@ namespace mvc.Controllers
         }
 
         public ViewResult Details(int id)
-        {
-            throw new Exception("Errors in details view");
+        {            
             var employee = _employeeRepository.Get(id);
             if (employee == null)
             {
