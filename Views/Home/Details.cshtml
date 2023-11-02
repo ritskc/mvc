@@ -11,7 +11,7 @@
         <p class="card-text">@Model.Employee.Email</p>
         <p class="card-text">@Model.Employee.Department</p>
         <a asp-controller="home" asp-action="index" class="btn btn-primary">Back</a>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a asp-action="edit" asp-controller="home" asp-route-id="@Model.Employee.Id" class="btn btn-primary">Edit</a>
         <a href="#" class="btn btn-primary">Delete</a>
     </div>
 </div>
