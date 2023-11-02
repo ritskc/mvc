@@ -1,0 +1,11 @@
+﻿@model string;
+
+@{
+    ViewBag.Title = "Page not found";
+}
+
+<div>
+    <h1>@ViewBag.Title</h1>
+    <h3>@ViewBag.ErrorMessage</h3>
+    <a asp-action="index" asp-controller="home" class="btn btn-outline-primary">Employee Details</a>
+</div>
