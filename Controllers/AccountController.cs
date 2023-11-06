@@ -39,5 +39,36 @@ namespace mvc.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public async  Task<IActionResult> LogOut ()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("index", "home");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View("LoginView");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {                
+                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password,model.RememberMe,false);
+                if (result.Succeeded)
+                {
+                    //await signInManager.SignInAsync(result.use, isPersistent: false);
+                    return RedirectToAction("index", "home");
+                }
+                ModelState.AddModelError("", "Invalid login attempt");
+            }
+            return View();
+        }
+
+
     }
 }
