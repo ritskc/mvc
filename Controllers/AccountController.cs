@@ -63,8 +63,8 @@ namespace mvc.Controllers
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password,model.RememberMe,false);
                 if (result.Succeeded)
                 {
-                    if(!string.IsNullOrEmpty(returnUrl))
-                        return Redirect(returnUrl);
+                    if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        return LocalRedirect(returnUrl);
                     else 
                         return RedirectToAction("index", "home");
                 }
