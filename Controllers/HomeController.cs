@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using mvc.Models;
 using mvc.Repository.IRepository;
@@ -20,12 +21,15 @@ namespace mvc.Controllers
             _employeeRepository = employeeRepository;
         }
 
+
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = _employeeRepository.GetAll();
             return View(model);
         }
 
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
