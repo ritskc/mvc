@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using mvc.Models;
 using mvc.ViewModels;
 
 namespace mvc.Controllers
@@ -8,10 +9,10 @@ namespace mvc.Controllers
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        public AccountController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -27,7 +28,7 @@ namespace mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, City="Bangalore" };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -56,21 +57,19 @@ namespace mvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model,string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {                
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password,model.RememberMe,false);
                 if (result.Succeeded)
                 {
-                    if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                        return LocalRedirect(returnUrl);
-                    else 
-                        return RedirectToAction("index", "home");
+                    return RedirectToAction("index", "home");
+
                 }
                 ModelState.AddModelError("", "Invalid login attempt");
             }
-            return View();
+            return View("LoginView");
         }
 
 

@@ -21,7 +21,7 @@ builder.Services.AddControllersWithViews(options=>
 builder.Services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDBConnection")));
 builder.Services.AddScoped<IEmployeeRepository,SQLEmployeeRepository>();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 0;
